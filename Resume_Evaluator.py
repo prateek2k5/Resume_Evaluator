@@ -16,7 +16,7 @@ if api_key is None:
 if not api_key:
     raise ValueError("Groq API key not found.")
 
-client=Groq(api_key=my_api_key)
+client=Groq(api_key=api_key)
 model="llama-3.3-70b-versatile"
 
 # Default Job Description (Agar koi JD pass na ho to ye use hogi)
