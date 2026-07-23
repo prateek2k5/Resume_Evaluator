@@ -4,12 +4,17 @@ from pathlib import Path
 from dotenv import load_dotenv
 from groq import Groq
 from pydantic import BaseModel, Field
+import streamlit as st
 
-load_dotenv()
-my_api_key=os.getenv("GROQ_API_KEY")
+# Pehle Streamlit Secrets check karo
+api_key = st.secrets.get("GROQ_API_KEY")
 
-if not my_api_key:
-    raise ValueError("Ooppps........Something went wrong....")
+# Agar local machine hai to env variable use karo
+if api_key is None:
+    api_key = os.getenv("GROQ_API_KEY")
+
+if not api_key:
+    raise ValueError("Groq API key not found.")
 
 client=Groq(api_key=my_api_key)
 model="llama-3.3-70b-versatile"
