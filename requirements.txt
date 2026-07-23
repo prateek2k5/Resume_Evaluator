@@ -1,0 +1,7 @@
+streamlit
+plotly
+pandas
+groq
+pydantic
+python-docx
+PyMuPDF
