@@ -4,20 +4,32 @@ from pathlib import Path
 from dotenv import load_dotenv
 from groq import Groq
 from pydantic import BaseModel, Field
-import streamlit as st
 
-# Pehle Streamlit Secrets check karo
-api_key = st.secrets.get("GROQ_API_KEY")
+# Local .env load karo
+load_dotenv()
 
-# Agar local machine hai to env variable use karo
-if api_key is None:
+try:
+    import streamlit as st
+
+    # Pehle Streamlit Secrets check karo
+    api_key = st.secrets.get("GROQ_API_KEY")
+
+except Exception:
+    api_key = None
+
+# Agar Streamlit Secret nahi mila to .env se lo
+if not api_key:
     api_key = os.getenv("GROQ_API_KEY")
 
+# API key check
 if not api_key:
     raise ValueError("Groq API key not found.")
 
-client = Groq(api_key=st.secrets["GROQ_API_KEY"])client=Groq(api_key=api_key)
-model="llama-3.3-70b-versatile"
+# Groq client banao
+client = Groq(api_key=api_key)
+
+# Model
+model = "llama-3.3-70b-versatile"
 
 # Default Job Description (Agar koi JD pass na ho to ye use hogi)
 job_description = None
