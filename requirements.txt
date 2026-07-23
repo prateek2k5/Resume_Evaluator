@@ -1,7 +1,8 @@
 streamlit
-plotly
-pandas
 groq
+python-dotenv
 pydantic
 python-docx
 PyMuPDF
+plotly
+pandas
