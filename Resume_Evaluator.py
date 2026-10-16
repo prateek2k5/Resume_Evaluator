@@ -30,7 +30,7 @@ if not api_key:
 client = Groq(api_key=api_key)
 
 # Model
-model = "llama-3.3-70b-versatile"
+model = "openai/gpt-oss-120b"
 
 # Default Job Description (Agar koi JD pass na ho to ye use hogi)
 job_description = None
